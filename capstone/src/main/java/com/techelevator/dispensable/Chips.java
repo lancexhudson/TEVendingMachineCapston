@@ -34,6 +34,7 @@ public class Chips implements Dispensable {
     }
 
     public String dispense(String itemLocation) {
+        inventory.initializeInventory();
         quantity--;
         return inventory.getItemInventory().get(itemLocation).getName() + "|" + inventory.getItemInventory().get(itemLocation).getPrice() + "|" + CHIP_MESSAGE;
 

@@ -17,14 +17,23 @@ public class Transaction {
     }
 
     public String dispenseItem(String itemLocation) {
-        if (!inventory.getItemInventory().containsKey(itemLocation)) {
-            return ("Please select a valid item choice.");
-        } else if (inventory.getItemInventory().containsKey(itemLocation) && inventory.getItemInventory().get(itemLocation).getQuantity() != 0) {
+        inventory.initializeInventory();
+        if (inventory.getItemInventory().containsKey(itemLocation) && inventory.getItemInventory().get(itemLocation).getQuantity() != 0) {
+            balance = balance.subtract(inventory.getItemInventory().get(itemLocation).getPrice());
+
             return (inventory.getItemInventory().get(itemLocation).dispense(itemLocation));
+        } else if (!inventory.getItemInventory().containsKey(itemLocation)) {
+            return ("Please select a valid item choice.");
         } else if (inventory.getItemInventory().get(itemLocation).getQuantity() == 0) {
             return ("That item is out of stock");
         } else {
             return null;
         }
     }
+
+    public BigDecimal dispenseChange() {
+        return BigDecimal.ZERO;
+    }
+
+
 }
