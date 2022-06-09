@@ -22,10 +22,7 @@ public class User {
 
             if (input.equals("1")) {
                 //inventory
-                for(Map.Entry<String, Dispensable> entry : inventory.getItemInventory().entrySet())
-                {
-                    System.out.println(entry.getKey() + "|" + entry.getValue().getName() + "|" + entry.getValue().getPrice() + "|" + entry.getValue().getType());
-                }
+                inventory.printMap(inventory.getItemInventory());
 
             } else if (input.equals("2")) {
 // we will need another loop if product is sold out or doesn't exist

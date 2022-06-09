@@ -5,10 +5,7 @@ import com.techelevator.dispensable.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Inventory {
     Map<String, Dispensable> itemInventory = new HashMap<>();
@@ -43,6 +40,15 @@ public class Inventory {
             }
         } catch (FileNotFoundException fileNotFoundException){
             System.out.println("File not found.");
+        }
+
+    }
+
+    public void printMap(Map<String, Dispensable> itemInventory){
+
+        Map<String, Dispensable> sortedInventory = new TreeMap<>(itemInventory);
+        for(Map.Entry<String, Dispensable> entry : sortedInventory.entrySet()){
+            System.out.println(entry.getKey() + "|" + entry.getValue().getName() + "|" + entry.getValue().getPrice() + "|" + entry.getValue().getType());
         }
 
     }
