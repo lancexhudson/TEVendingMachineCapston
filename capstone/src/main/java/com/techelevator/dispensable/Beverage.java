@@ -37,13 +37,14 @@ public class Beverage implements Dispensable {
     public String dispense(String itemLocation) {
         inventory.initializeInventory();
         quantity--;
-       return inventory.getItemInventory().get(itemLocation).getName() + "|" + inventory.getItemInventory().get(itemLocation).getPrice() + "|" + BEV_MESSAGE;
+        return inventory.getItemInventory().get(itemLocation).getName() + "|" + inventory.getItemInventory().get(itemLocation).getPrice() + "|" + BEV_MESSAGE;
 
     }
 
     public int getQuantity() {
         return quantity;
     }
+
 
     @Override
     public String getType() {
