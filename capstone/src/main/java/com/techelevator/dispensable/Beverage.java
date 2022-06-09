@@ -6,9 +6,11 @@ public class Beverage implements Dispensable {
 
     public final String BEV_MESSAGE = "Glug Glug, Yum!";
 
+
     private String name;
     private BigDecimal price;
     private int quantity = 5;
+    private String type = "Drink";
 
     @Override
     public String getName() {
@@ -37,5 +39,10 @@ public class Beverage implements Dispensable {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    @Override
+    public String getType(){
+        return type;
     }
 }

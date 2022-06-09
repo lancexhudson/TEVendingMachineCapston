@@ -6,9 +6,12 @@ public class Candy implements Dispensable {
 
     public final String CANDY_MESSAGE = "Munch Munch, Yum!";
 
+
     private String name;
     private BigDecimal price;
     private int quantity = 5;
+    private String type = "Candy";
+
 
     @Override
     public String getName() {
@@ -39,4 +42,8 @@ public class Candy implements Dispensable {
         return quantity;
     }
 
+    @Override
+    public String getType(){
+        return type;
+    }
 }

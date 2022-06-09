@@ -1,5 +1,8 @@
 package com.techelevator;
 
+import com.techelevator.dispensable.Dispensable;
+
+import java.util.Map;
 import java.util.Scanner;
 
 public class User {
@@ -7,6 +10,8 @@ public class User {
 
         Scanner userInput = new Scanner(System.in);
         String input;
+        Inventory inventory = new Inventory();
+        inventory.initializeInventory();
 
         do {
             System.out.println("(1) Display Vending Machine Items");
@@ -17,6 +22,11 @@ public class User {
 
             if (input.equals("1")) {
                 //inventory
+                for(Map.Entry<String, Dispensable> entry : inventory.getItemInventory().entrySet())
+                {
+                    System.out.println(entry.getKey() + "|" + entry.getValue().getName() + "|" + entry.getValue().getPrice() + "|" + entry.getValue().getType());
+                }
+
             } else if (input.equals("2")) {
 // we will need another loop if product is sold out or doesn't exist
 

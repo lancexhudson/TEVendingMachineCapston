@@ -10,6 +10,8 @@ public interface Dispensable {
     public BigDecimal getPrice();
     public void setPrice(BigDecimal price);
 
+    public String getType();
+
     public int dispense();
 
 

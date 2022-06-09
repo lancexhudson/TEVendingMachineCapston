@@ -9,6 +9,7 @@ public class Chips implements Dispensable {
     private String name;
     private BigDecimal price;
     private int quantity = 5;
+    private String type = "Chip";
 
     @Override
     public String getName() {
@@ -37,6 +38,11 @@ public class Chips implements Dispensable {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    @Override
+    public String getType(){
+        return type;
     }
 
 }
