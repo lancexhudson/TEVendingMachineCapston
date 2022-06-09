@@ -1,9 +1,11 @@
 package com.techelevator.dispensable;
 
+import com.techelevator.Inventory;
+
 import java.math.BigDecimal;
 
 public class Gum implements Dispensable {
-
+    Inventory inventory = new Inventory();
     public final String GUM_MESSAGE = "Chew Chew, Yum!";
 
 
@@ -32,9 +34,10 @@ public class Gum implements Dispensable {
         this.price = price;
     }
 
-    public int dispense() {
+    public String dispense(String itemLocation) {
         quantity--;
-        return quantity;
+        return inventory.getItemInventory().get(itemLocation).getName() + "|" + inventory.getItemInventory().get(itemLocation).getPrice() + "|" + GUM_MESSAGE;
+
     }
 
     public int getQuantity() {
@@ -42,7 +45,7 @@ public class Gum implements Dispensable {
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return type;
     }
 

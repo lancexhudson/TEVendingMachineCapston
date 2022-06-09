@@ -41,9 +41,7 @@ public class Inventory {
         } catch (FileNotFoundException fileNotFoundException){
             System.out.println("File not found.");
         }
-
     }
-
     public void printMap(Map<String, Dispensable> itemInventory){
 
         Map<String, Dispensable> sortedInventory = new TreeMap<>(itemInventory);

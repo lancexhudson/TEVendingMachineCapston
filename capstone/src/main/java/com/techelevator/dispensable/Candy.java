@@ -1,9 +1,11 @@
 package com.techelevator.dispensable;
 
+import com.techelevator.Inventory;
+
 import java.math.BigDecimal;
 
 public class Candy implements Dispensable {
-
+    Inventory inventory = new Inventory();
     public final String CANDY_MESSAGE = "Munch Munch, Yum!";
 
 
@@ -33,9 +35,9 @@ public class Candy implements Dispensable {
         this.price = price;
     }
 
-    public int dispense() {
+    public String dispense(String itemLocation) {
         quantity--;
-        return quantity;
+        return inventory.getItemInventory().get(itemLocation).getName() + "|" + inventory.getItemInventory().get(itemLocation).getPrice() + "|" + CANDY_MESSAGE;
     }
 
     public int getQuantity() {
@@ -43,7 +45,7 @@ public class Candy implements Dispensable {
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return type;
     }
 }
