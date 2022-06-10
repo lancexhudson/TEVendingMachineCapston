@@ -13,7 +13,7 @@ public class Inventory {
 
     File vendingMachine = new File("vendingmachine.csv");
 
-//Added this default constructor to make a new map that just holds the initial inventory values of each item
+//This constructor makes a new map that holds the initial inventory values of each item
     public Inventory() {
         String[] itemLocation;
         try (Scanner scanner = new Scanner(vendingMachine)) {

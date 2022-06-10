@@ -1,19 +1,12 @@
 package com.techelevator.dispensable;
-
-import com.techelevator.Inventory;
-
 import java.math.BigDecimal;
 
 public class Candy implements Dispensable {
-    Inventory inventory = new Inventory();
     public final String CANDY_MESSAGE = "Munch Munch, Yum!";
-
 
     private String name;
     private BigDecimal price;
-    //private int quantity = 5;
     private String type = "Candy";
-
 
     @Override
     public String getName() {
@@ -36,19 +29,14 @@ public class Candy implements Dispensable {
     }
 
     public String dispense(String itemLocation) {
-        inventory.initializeInventory();
-        //quantity--;
-        return inventory.getItemInventory().get(itemLocation).getName() + "|" + inventory.getItemInventory().get(itemLocation).getPrice() + "|" + CANDY_MESSAGE;
+
+        return getName() + "|" + getPrice() + "|" + CANDY_MESSAGE;
+
     }
 
-//    Added this method to each item class
-//    public void decrementStock(String itemLocation){
-//        inventory.getItemQuantity().put(itemLocation, inventory.getItemQuantity().get(itemLocation) - 1);
+//    public int getQuantity() {
+//        return 0;//quantity;
 //    }
-
-    public int getQuantity() {
-        return 0;//quantity;
-    }
 
     @Override
     public String getType() {

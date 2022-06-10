@@ -2,6 +2,7 @@ package com.techelevator;
 
 import com.techelevator.dispensable.Dispensable;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Scanner;
@@ -31,8 +32,6 @@ public class User {
 
             } else if (input.equals("2")) {
                 do {
-
-
                     System.out.println("Current Money Provided: $" + transaction.getBalance());
                     System.out.println("(1) Feed Money");
                     System.out.println("(2) Select Product");
@@ -52,11 +51,13 @@ public class User {
                         System.out.println("Please make your selection: ");
                         String itemChoice = userInput.nextLine();
                         System.out.println(transaction.dispenseItem(itemChoice));
-                        logger.writeLog(inventory.itemInventory.get(itemChoice).getPrice(), transaction.getBalance(), inventory.itemInventory.get(itemChoice).getName() + " " + itemChoice);
+                        if (inventory.itemInventory.containsKey(itemChoice)) {
+                            logger.writeLog(inventory.itemInventory.get(itemChoice).getPrice(), transaction.getBalance(), inventory.itemInventory.get(itemChoice).getName() + " " + itemChoice);
+                        }
 
                     } else if (purchaseInput.equals("3")) {
                         logger.writeLog(transaction.getBalance(), new BigDecimal("0.00"), "GIVE CHANGE");
-                        System.out.println(transaction.dispenseChange());
+                        System.out.println(transaction.getQuarters() + " Quarters " + transaction.getDimes() + " Dimes " + transaction.getNickels() + " Nickels ");
 
                     }
 
