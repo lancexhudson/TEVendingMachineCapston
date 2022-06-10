@@ -14,6 +14,7 @@ public class User {
         String purchaseInput;
         Inventory inventory = new Inventory();
         Transaction transaction = new Transaction();
+        Logger logger = new Logger();
 
         inventory.initializeInventory();
 
@@ -29,7 +30,6 @@ public class User {
                 inventory.printMap(inventory.getItemInventory());
 
             } else if (input.equals("2")) {
-// we will need another loop if product is sold out or doesn't exist
                 do {
 
 
@@ -44,6 +44,7 @@ public class User {
                         System.out.println("Enter the amount you would like to deposit: ");
                         BigDecimal userDeposit = new BigDecimal(userInput.nextLine());
                         transaction.feedMoney(userDeposit);
+                        logger.writeLog(userDeposit, transaction.getBalance());
 
                     } else if (purchaseInput.equals("2")) {
 
@@ -51,11 +52,14 @@ public class User {
                         System.out.println("Please make your selection: ");
                         String itemChoice = userInput.nextLine();
                         System.out.println(transaction.dispenseItem(itemChoice));
-
+                        logger.writeLog(inventory.itemInventory.get(itemChoice).getPrice(), transaction.getBalance());
 
                     } else if (purchaseInput.equals("3")) {
                         //dispense change
                         //return to main menu
+                        logger.writeLog(transaction.getBalance(), BigDecimal.ZERO);
+                        System.out.println(transaction.dispenseChange());
+
                     }
 
                 } while (!purchaseInput.equals("3"));

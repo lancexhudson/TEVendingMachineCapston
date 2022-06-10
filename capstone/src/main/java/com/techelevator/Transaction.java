@@ -18,21 +18,42 @@ public class Transaction {
 
     public String dispenseItem(String itemLocation) {
         inventory.initializeInventory();
+        //happy path valid choice
         if (inventory.getItemInventory().containsKey(itemLocation) && inventory.currentStock(itemLocation) != 0) {//inventory.getItemInventory().get(itemLocation).getQuantity() != 0) {
-            balance = balance.subtract(inventory.getItemInventory().get(itemLocation).getPrice());
-            inventory.decrementStock(itemLocation);
-            return (inventory.getItemInventory().get(itemLocation).dispense(itemLocation));
-        } else if (!inventory.getItemInventory().containsKey(itemLocation)) {
+            if (getBalance().compareTo(inventory.getItemInventory().get(itemLocation).getPrice()) == 0 || getBalance().compareTo(inventory.getItemInventory().get(itemLocation).getPrice()) == 1){
+                balance = balance.subtract(inventory.getItemInventory().get(itemLocation).getPrice());
+                inventory.decrementStock(itemLocation);
+                return (inventory.getItemInventory().get(itemLocation).dispense(itemLocation));
+            } else {
+                return "Insufficient Funds.";
+            }
+        }
+        //invalid choice
+        else if (!inventory.getItemInventory().containsKey(itemLocation)) {
             return ("Please select a valid item choice.");
-        } else if (inventory.currentStock(itemLocation) == 0)//else if (inventory.getItemInventory().get(itemLocation).getQuantity() == 0) {
+        }
+        //out of stock
+        else if (inventory.currentStock(itemLocation) == 0)//else if (inventory.getItemInventory().get(itemLocation).getQuantity() == 0) {
             return ("That item is out of stock");
         else {
             return null;
         }
     }
 
-    public BigDecimal dispenseChange() {
-        return BigDecimal.ZERO;
+    public String dispenseChange() {
+        BigDecimal numQuarters;
+        BigDecimal numDimes;
+        BigDecimal numNickels;
+
+        numQuarters = getBalance().divideAndRemainder(new BigDecimal(".25"))[0];
+        balance = getBalance().divideAndRemainder(new BigDecimal(".25"))[1];
+        numDimes = getBalance().divideAndRemainder(new BigDecimal(".10"))[0];
+        balance = getBalance().divideAndRemainder(new BigDecimal(".10"))[1];
+        numNickels = getBalance().divideAndRemainder(new BigDecimal(".05"))[0];
+        balance = getBalance().divideAndRemainder(new BigDecimal(".05"))[1];
+
+        return numQuarters + " Quarters " + numDimes + " Dimes " + numNickels + " Nickels";
+
     }
 
 

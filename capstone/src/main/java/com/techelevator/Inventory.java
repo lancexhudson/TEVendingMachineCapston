@@ -71,11 +71,11 @@ public class Inventory {
     public Map<String, Integer> getItemQuantity(){
         return itemQuantity;
     }
-    //My last hope
+
     public void decrementStock(String itemLocation){
         itemQuantity.put(itemLocation, itemQuantity.get(itemLocation) - 1);
     }
-    //my last hope pt 2
+
     public int currentStock(String itemLocation){
         return itemQuantity.get(itemLocation);
     }
