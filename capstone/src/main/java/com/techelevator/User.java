@@ -50,7 +50,17 @@ public class User {
                         inventory.printMap(inventory.getItemInventory());
                         System.out.println("Please make your selection: ");
                         String itemChoice = userInput.nextLine();
-                        System.out.println(transaction.dispenseItem(itemChoice));
+                        if (inventory.getItemInventory().containsKey(itemChoice) && inventory.currentStock(itemChoice) != 0) {
+                            if (transaction.getBalance().compareTo(inventory.getItemInventory().get(itemChoice).getPrice()) == 0 || transaction.getBalance().compareTo(inventory.getItemInventory().get(itemChoice).getPrice()) == 1) {
+                                System.out.println(transaction.dispenseItem(itemChoice, inventory.getItemInventory().get(itemChoice)));
+                            } else {
+                                System.out.println("Insufficient Funds.");
+                            }
+                        }  else if (!inventory.getItemInventory().containsKey(itemChoice)) {
+                            System.out.println("Please select a valid item choice.");
+                        } else if (inventory.currentStock(itemChoice) == 0) {
+                            System.out.println("That item is out of stock");
+                        }
                         if (inventory.itemInventory.containsKey(itemChoice)) {
                             logger.writeLog(inventory.itemInventory.get(itemChoice).getPrice(), transaction.getBalance(), inventory.itemInventory.get(itemChoice).getName() + " " + itemChoice);
                         }
@@ -61,7 +71,8 @@ public class User {
 
                     }
 
-                } while (!purchaseInput.equals("3"));
+                }
+                while (!purchaseInput.equals("3"));
 
             }
         } while (!input.equals("3"));
