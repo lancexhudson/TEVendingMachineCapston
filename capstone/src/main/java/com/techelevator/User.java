@@ -44,7 +44,7 @@ public class User {
                         System.out.println("Enter the amount you would like to deposit: ");
                         BigDecimal userDeposit = new BigDecimal(userInput.nextLine());
                         transaction.feedMoney(userDeposit);
-                        logger.writeLog(userDeposit, transaction.getBalance());
+                        logger.writeLog(userDeposit.setScale(2), transaction.getBalance(), "FEED MONEY"); //.setScale allows 2 decimal places in printout
 
                     } else if (purchaseInput.equals("2")) {
 
@@ -52,12 +52,10 @@ public class User {
                         System.out.println("Please make your selection: ");
                         String itemChoice = userInput.nextLine();
                         System.out.println(transaction.dispenseItem(itemChoice));
-                        logger.writeLog(inventory.itemInventory.get(itemChoice).getPrice(), transaction.getBalance());
+                        logger.writeLog(inventory.itemInventory.get(itemChoice).getPrice(), transaction.getBalance(), inventory.itemInventory.get(itemChoice).getName() + " " + itemChoice);
 
                     } else if (purchaseInput.equals("3")) {
-                        //dispense change
-                        //return to main menu
-                        logger.writeLog(transaction.getBalance(), BigDecimal.ZERO);
+                        logger.writeLog(transaction.getBalance(), new BigDecimal("0.00"), "GIVE CHANGE");
                         System.out.println(transaction.dispenseChange());
 
                     }
