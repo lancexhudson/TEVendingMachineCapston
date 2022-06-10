@@ -16,5 +16,4 @@ public interface Dispensable {
 
     public String dispense(String itemLocation);
 
-//    public int getQuantity();
 }

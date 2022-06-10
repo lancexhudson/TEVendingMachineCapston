@@ -28,9 +28,10 @@ public class Transaction {
 
     public BigDecimal getQuarters() {
         BigDecimal numQuarters;
+        BigDecimal quarterValue = new BigDecimal("0.25");
 
-        numQuarters = getBalance().divideAndRemainder(new BigDecimal(".25"))[0];
-        balance = getBalance().divideAndRemainder(new BigDecimal(".25"))[1];
+        numQuarters = getBalance().divideAndRemainder(quarterValue)[0];
+        balance = getBalance().divideAndRemainder(quarterValue)[1];
 
         return numQuarters;
 
@@ -38,18 +39,20 @@ public class Transaction {
 
     public BigDecimal getDimes() {
         BigDecimal numDimes;
+        BigDecimal dimeValue = new BigDecimal("0.10");
 
-        numDimes = getBalance().divideAndRemainder(new BigDecimal(".10"))[0];
-        balance = getBalance().divideAndRemainder(new BigDecimal(".10"))[1];
+        numDimes = getBalance().divideAndRemainder(dimeValue)[0];
+        balance = getBalance().divideAndRemainder(dimeValue)[1];
 
         return numDimes;
     }
 
     public BigDecimal getNickels() {
         BigDecimal numNickels;
+        BigDecimal nickelValue = new BigDecimal("0.05");
 
-        numNickels = getBalance().divideAndRemainder(new BigDecimal(".05"))[0];
-        balance = getBalance().divideAndRemainder(new BigDecimal(".05"))[1];
+        numNickels = getBalance().divideAndRemainder(nickelValue)[0];
+        balance = getBalance().divideAndRemainder(nickelValue)[1];
 
         return numNickels;
     }

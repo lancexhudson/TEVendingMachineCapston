@@ -34,10 +34,6 @@ public class Candy implements Dispensable {
 
     }
 
-//    public int getQuantity() {
-//        return 0;//quantity;
-//    }
-
     @Override
     public String getType() {
         return type;

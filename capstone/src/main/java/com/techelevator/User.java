@@ -42,9 +42,13 @@ public class User {
                     if (purchaseInput.equals("1")) {
                         System.out.println("Enter the amount you would like to deposit: ");
                         BigDecimal userDeposit = new BigDecimal(userInput.nextLine());
-                        transaction.feedMoney(userDeposit);
-                        logger.writeLog(userDeposit.setScale(2), transaction.getBalance(), "FEED MONEY"); //.setScale allows 2 decimal places in printout
-
+                        if(userDeposit.remainder(new BigDecimal(".05")).compareTo(BigDecimal.ZERO) != 0)
+                        {
+                            System.out.println("No pennies allowed.");
+                        } else {
+                            transaction.feedMoney(userDeposit);
+                            logger.writeLog(userDeposit.setScale(2), transaction.getBalance(), "FEED MONEY"); //.setScale allows 2 decimal places in printout
+                        }
                     } else if (purchaseInput.equals("2")) {
 
                         inventory.printMap(inventory.getItemInventory());
@@ -53,6 +57,7 @@ public class User {
                         if (inventory.getItemInventory().containsKey(itemChoice) && inventory.currentStock(itemChoice) != 0) {
                             if (transaction.getBalance().compareTo(inventory.getItemInventory().get(itemChoice).getPrice()) == 0 || transaction.getBalance().compareTo(inventory.getItemInventory().get(itemChoice).getPrice()) == 1) {
                                 System.out.println(transaction.dispenseItem(itemChoice, inventory.getItemInventory().get(itemChoice)));
+                                logger.writeLog(inventory.itemInventory.get(itemChoice).getPrice(), transaction.getBalance(), inventory.itemInventory.get(itemChoice).getName() + " " + itemChoice);
                                 inventory.decrementStock(itemChoice);
                             } else {
                                 System.out.println("Insufficient Funds.");
@@ -62,13 +67,10 @@ public class User {
                         } else if (inventory.currentStock(itemChoice) == 0) {
                             System.out.println("That item is out of stock");
                         }
-                        if (inventory.itemInventory.containsKey(itemChoice)) {
-                            logger.writeLog(inventory.itemInventory.get(itemChoice).getPrice(), transaction.getBalance(), inventory.itemInventory.get(itemChoice).getName() + " " + itemChoice);
-                        }
 
                     } else if (purchaseInput.equals("3")) {
                         logger.writeLog(transaction.getBalance(), new BigDecimal("0.00"), "GIVE CHANGE");
-                        System.out.println(transaction.getQuarters() + " Quarters " + transaction.getDimes() + " Dimes " + transaction.getNickels() + " Nickels ");
+                        System.out.println(transaction.getQuarters() + " Quarter(s) " + transaction.getDimes() + " Dime(s) " + transaction.getNickels() + " Nickel(s) ");
 
                     }
 

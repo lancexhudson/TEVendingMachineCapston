@@ -16,10 +16,11 @@ public class Inventory {
 //This constructor makes a new map that holds the initial inventory values of each item
     public Inventory() {
         String[] itemLocation;
+        int maxStock = 5;
         try (Scanner scanner = new Scanner(vendingMachine)) {
             while (scanner.hasNextLine()) {
                 itemLocation = scanner.nextLine().split("\\|");
-                itemQuantity.put(itemLocation[0], 5);
+                itemQuantity.put(itemLocation[0], maxStock);
             }
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("File not found.");
