@@ -18,15 +18,15 @@ public class Transaction {
 
     public String dispenseItem(String itemLocation) {
         inventory.initializeInventory();
-        if (inventory.getItemInventory().containsKey(itemLocation) && inventory.getItemInventory().get(itemLocation).getQuantity() != 0) {
+        if (inventory.getItemInventory().containsKey(itemLocation) && inventory.currentStock(itemLocation) != 0) {//inventory.getItemInventory().get(itemLocation).getQuantity() != 0) {
             balance = balance.subtract(inventory.getItemInventory().get(itemLocation).getPrice());
-
+            inventory.decrementStock(itemLocation);
             return (inventory.getItemInventory().get(itemLocation).dispense(itemLocation));
         } else if (!inventory.getItemInventory().containsKey(itemLocation)) {
             return ("Please select a valid item choice.");
-        } else if (inventory.getItemInventory().get(itemLocation).getQuantity() == 0) {
+        } else if (inventory.currentStock(itemLocation) == 0)//else if (inventory.getItemInventory().get(itemLocation).getQuantity() == 0) {
             return ("That item is out of stock");
-        } else {
+        else {
             return null;
         }
     }

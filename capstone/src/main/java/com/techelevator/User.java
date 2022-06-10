@@ -14,6 +14,7 @@ public class User {
         String purchaseInput;
         Inventory inventory = new Inventory();
         Transaction transaction = new Transaction();
+
         inventory.initializeInventory();
 
         do {

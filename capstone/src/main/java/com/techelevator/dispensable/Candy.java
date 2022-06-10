@@ -11,7 +11,7 @@ public class Candy implements Dispensable {
 
     private String name;
     private BigDecimal price;
-    private int quantity = 5;
+    //private int quantity = 5;
     private String type = "Candy";
 
 
@@ -37,12 +37,17 @@ public class Candy implements Dispensable {
 
     public String dispense(String itemLocation) {
         inventory.initializeInventory();
-        quantity--;
+        //quantity--;
         return inventory.getItemInventory().get(itemLocation).getName() + "|" + inventory.getItemInventory().get(itemLocation).getPrice() + "|" + CANDY_MESSAGE;
     }
 
+//    Added this method to each item class
+//    public void decrementStock(String itemLocation){
+//        inventory.getItemQuantity().put(itemLocation, inventory.getItemQuantity().get(itemLocation) - 1);
+//    }
+
     public int getQuantity() {
-        return quantity;
+        return 0;//quantity;
     }
 
     @Override
