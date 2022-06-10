@@ -33,9 +33,6 @@ public class Chips implements Dispensable {
         return getName() + "|" + getPrice() + "|" + CHIP_MESSAGE;
     }
 
-//    public int getQuantity() {
-//        return 0;//quantity;
-//    }
 
     @Override
     public String getType() {

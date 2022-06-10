@@ -10,6 +10,9 @@ public class Transaction {
     public BigDecimal getBalance() {
         return balance;
     }
+    public void setBalance(BigDecimal newBalance) {
+        balance = newBalance;  //for testing
+    }
 
     public BigDecimal feedMoney(BigDecimal deposit) {
         balance = balance.add(deposit);
@@ -17,15 +20,10 @@ public class Transaction {
     }
 
     public String dispenseItem(String itemLocation, Dispensable dispensable) {
-//        inventory.initializeInventory();
 
-        //happy path valid choice
-//        if (inventory.getItemInventory().containsKey(itemLocation) && inventory.currentStock(itemLocation) != 0){
-//            if (getBalance().compareTo(inventory.getItemInventory().get(itemLocation).getPrice()) == 0 || getBalance().compareTo(inventory.getItemInventory().get(itemLocation).getPrice()) == 1) {
         balance = balance.subtract(dispensable.getPrice());
-        inventory.decrementStock(itemLocation);
         return (dispensable.dispense(itemLocation));
-        //return "Insufficient Funds.";
+
     }
 
     public BigDecimal getQuarters() {

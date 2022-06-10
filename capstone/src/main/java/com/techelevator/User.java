@@ -53,6 +53,7 @@ public class User {
                         if (inventory.getItemInventory().containsKey(itemChoice) && inventory.currentStock(itemChoice) != 0) {
                             if (transaction.getBalance().compareTo(inventory.getItemInventory().get(itemChoice).getPrice()) == 0 || transaction.getBalance().compareTo(inventory.getItemInventory().get(itemChoice).getPrice()) == 1) {
                                 System.out.println(transaction.dispenseItem(itemChoice, inventory.getItemInventory().get(itemChoice)));
+                                inventory.decrementStock(itemChoice);
                             } else {
                                 System.out.println("Insufficient Funds.");
                             }
