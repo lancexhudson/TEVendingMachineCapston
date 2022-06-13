@@ -1,10 +1,6 @@
 package com.techelevator;
 
-import com.techelevator.dispensable.Dispensable;
-
-import java.io.File;
 import java.math.BigDecimal;
-import java.util.Map;
 import java.util.Scanner;
 
 public class User {

@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 public class Transaction {
 
     BigDecimal balance = new BigDecimal("0.00");
-    Inventory inventory = new Inventory();
 
     public BigDecimal getBalance() {
         return balance;
