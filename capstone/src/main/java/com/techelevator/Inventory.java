@@ -56,11 +56,6 @@ public class Inventory {
         return itemInventory;
     }
 
-    //Added this getter for the new map, which should be initialized at the top of each item class
-    public Map<String, Integer> getItemQuantity(){
-        return itemQuantity;
-    }
-
     public void decrementStock(String itemLocation){
         itemQuantity.put(itemLocation, itemQuantity.get(itemLocation) - 1);
     }
