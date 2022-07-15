@@ -13,25 +13,13 @@ public class Inventory {
 
     File vendingMachine = new File("vendingmachine.csv");
 
-//This constructor makes a new map that holds the initial inventory values of each item
-    public Inventory() {
-        String[] itemLocation;
+    public void initializeInventory() {
+        String[] itemSignature;
         int maxStock = 5;
         try (Scanner scanner = new Scanner(vendingMachine)) {
             while (scanner.hasNextLine()) {
-                itemLocation = scanner.nextLine().split("\\|");
-                itemQuantity.put(itemLocation[0], maxStock);
-            }
-        } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("File not found.");
-        }
-    }
-
-    public void initializeInventory() {
-        String[] itemSignature;
-        try (Scanner scanner = new Scanner(vendingMachine)) {
-            while (scanner.hasNextLine()) {
                 itemSignature = scanner.nextLine().split("\\|");
+                itemQuantity.put(itemSignature[0], maxStock);
                 if (itemSignature[3].toLowerCase().equals("drink")) {
                     itemInventory.put(itemSignature[0], new Beverage());
                     itemInventory.get(itemSignature[0]).setName(itemSignature[1]);
@@ -66,11 +54,6 @@ public class Inventory {
 
     public Map<String, Dispensable> getItemInventory() {
         return itemInventory;
-    }
-
-    //Added this getter for the new map, which should be initialized at the top of each item class
-    public Map<String, Integer> getItemQuantity(){
-        return itemQuantity;
     }
 
     public void decrementStock(String itemLocation){

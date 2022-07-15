@@ -1,10 +1,7 @@
 package com.techelevator;
 
-import com.techelevator.dispensable.Dispensable;
-
-import java.io.File;
 import java.math.BigDecimal;
-import java.util.Map;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class User {
@@ -53,7 +50,7 @@ public class User {
 
                         inventory.printMap(inventory.getItemInventory());
                         System.out.println("Please make your selection: ");
-                        String itemChoice = userInput.nextLine();
+                        String itemChoice = userInput.nextLine().toUpperCase();
                         if (inventory.getItemInventory().containsKey(itemChoice) && inventory.currentStock(itemChoice) != 0) {
                             if (transaction.getBalance().compareTo(inventory.getItemInventory().get(itemChoice).getPrice()) == 0 || transaction.getBalance().compareTo(inventory.getItemInventory().get(itemChoice).getPrice()) == 1) {
                                 System.out.println(transaction.dispenseItem(itemChoice, inventory.getItemInventory().get(itemChoice)));

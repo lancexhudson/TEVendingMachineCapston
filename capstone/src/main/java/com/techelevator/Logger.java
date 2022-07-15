@@ -4,7 +4,6 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 public class Logger {
 
